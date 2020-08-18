@@ -10,10 +10,7 @@ LDFLAGS		= -shared -g $(LUA_LDFLAGS)
 CC 			= gcc
 OUTPUT		= tnt.so
 
-OBJS = src/tnt.o \
-	   src/tnt_helper.o \
-	   src/tnt_requestbuilder.o \
-	   src/tnt_responseparser.o
+OBJS = src/tnt.o
 
 all: $(OBJS)
 	$(CC) -o $(OUTPUT) $(LDFLAGS) ${OBJS}
