@@ -39,6 +39,27 @@ extern "C" {
 
 #include <3rdparty/tp/tp.h>
 
+typedef struct tnt_Enum {
+	const char *name;
+	const int val;
+} luatarantool_Enum;
+
+typedef enum {
+	TNT_OP_SET = 0,
+	TNT_OP_ADD,
+	TNT_OP_AND,
+	TNT_OP_XOR,
+	TNT_OP_OR,
+	TNT_OP_SPLICE,
+	TNT_OP_DELETE,
+	TNT_OP_INSERT,
+} tnt_requestbuilder_op;
+
+typedef enum {
+	TNT_BOX_RETURN_TUPLE = 0x01,
+	TNT_BOX_ADD = 0x02,
+	TNT_BOX_REPLACE = 0x04,
+} tnt_requetbuilder_flag;
 
 void lregister_enum(struct lua_State *L, int narg,
 			const struct tnt_Enum *e,
