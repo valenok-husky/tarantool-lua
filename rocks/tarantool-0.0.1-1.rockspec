@@ -2,7 +2,7 @@ package = "tarantool"
 version = "0.0.1-1"
 
 source = {
-    url = "git://github.com/bigbes92/tarantool-lua.git",
+    url = "git://github.com/valenok-husky/tarantool-lua.git",
     tag = "v0.0.1"
 }
 
@@ -12,8 +12,7 @@ description = {
         The library currently allows user to INSERT, DELETE, SELECT, UPDATE
         and CALL stored procedures for Tarantool.
     ]],
-    homepage = "http://bigbes92.github.io/tarantool-lua",
-    maintainer = "Eugine Blikh <bigbes@gmail.com>",
+    maintainer = "Nikita Galushko",
     license = "MIT",
 }
 
@@ -27,10 +26,7 @@ build = {
     modules = {
         ["tnt"] = {
             sources = {
-                "src/tnt.c",
-                "src/tnt_helper.c",
-                "src/tnt_requestbuilder.c",
-                "src/tnt_responseparser.c"
+                "src/tnt.c"
             },
             incdirs = {
                 "include/",

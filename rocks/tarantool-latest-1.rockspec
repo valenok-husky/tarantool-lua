@@ -27,10 +27,7 @@ build = {
     modules = {
         ["tnt"] = {
             sources = {
-                "src/tnt.c",
-                "src/tnt_helper.c",
-                "src/tnt_requestbuilder.c",
-                "src/tnt_responseparser.c"
+                "src/tnt.c"
             },
             incdirs = {
                 "include/",

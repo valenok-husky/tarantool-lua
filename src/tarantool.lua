@@ -100,7 +100,7 @@ local Connection = {
         local stat, err = self._sock:send(self._rb:getvalue())
         if stat == nil then
             self._rb:flush()
-            self.error("LuaSocket: "..err, 5)
+            self.error("socket: "..err, 5)
         end
     end,
 
@@ -108,7 +108,7 @@ local Connection = {
         local a, err = self._sock:receive('12')
         if a == nil then
             self._rb:flush()
-            self.error("LuaSocket: "..err, 5)
+            self.error("socket: "..err, 5)
         end
         local b, err, get = "", nil, self._body_len(a)
         if get ~= 0 then
@@ -116,7 +116,7 @@ local Connection = {
         end
         if b == nil then
             self._rb:flush()
-            self.error("LuaSocket: "..err, 5)
+            self.error("socket: "..err, 5)
         end
         local stat, package = self._rp:parse(a..b)
         if stat == false then
@@ -410,7 +410,7 @@ function Connection.connect(t)
         socket:settimeout(timeout)
         local stat, err = socket:connect(host, port)
         if stat == nil then
-            Connection.error("LuaSocket: "..err, 5)
+            Connection.error("socket: "..err, 5)
         end
         socket:setoption('tcp-nodelay', true)
         return socket
