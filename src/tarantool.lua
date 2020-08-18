@@ -2,7 +2,7 @@
 -- Tarantool-Connector for LUA
 
 local tarantool = {
-    _VERSION     = "tarantool-lua 0.0.1-dev",
+    _VERSION     = "tarantool-lua 0.0.2-dev",
     _DESCRIPTION = "Lua library for the tarantool k-v storage system",
 }
 
