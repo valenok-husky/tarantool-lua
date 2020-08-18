@@ -136,7 +136,7 @@ int ltnt_requestbuilder_ping(struct lua_State *L) {
 		luaL_error(L, "bad number of arguments (1 expected, got %d)",
 				lua_gettop(L) - 1);
 	struct tp **iproto = ltnt_checkrequestbuilder(L, 1);
-	uint32_t reqid = (uint32_t )luaL_checkint(L, 2);
+	uint32_t reqid = (uint32_t )luaL_checkinteger(L, 2);
 	if (tp_ping(*iproto) == -1) {
 		lua_pushboolean(L, 0);
 		lua_pushstring(L, "tp.h memory error");
@@ -166,8 +166,8 @@ int ltnt_requestbuilder_insert(struct lua_State *L) {
 		luaL_error(L, "bad number of arguments (4 expected, got %d)",
 				lua_gettop(L) - 1);
 	struct tp **iproto = ltnt_checkrequestbuilder(L, 1);
-	uint32_t reqid = (uint32_t )luaL_checkint(L, 2);
-	uint32_t space = (uint32_t )luaL_checkint(L, 3);
+	uint32_t reqid = (uint32_t )luaL_checkinteger(L, 2);
+	uint32_t space = (uint32_t )luaL_checkinteger(L, 3);
 	uint32_t flags = (uint32_t )luaL_checknumber(L, 4);
 	if (!lua_istable(L, 5))
 		luaL_error(L, "Bad argument #4: (table expected, got %s)",
@@ -210,11 +210,11 @@ int ltnt_requestbuilder_select(struct lua_State *L) {
 		luaL_error(L, "bad number of arguments (6 expected, got %d)",
 				lua_gettop(L) - 1);
 	struct tp **iproto = ltnt_checkrequestbuilder(L, 1);
-	uint32_t reqid  = (uint32_t )luaL_checkint(L, 2);
-	uint32_t space  = (uint32_t )luaL_checkint(L, 3);
-	uint32_t index  = (uint32_t )luaL_checkint(L, 4);
-	uint32_t offset = (uint32_t )luaL_checkint(L, 5);
-	uint32_t limit  = (uint32_t )luaL_checkint(L, 6);
+	uint32_t reqid  = (uint32_t )luaL_checkinteger(L, 2);
+	uint32_t space  = (uint32_t )luaL_checkinteger(L, 3);
+	uint32_t index  = (uint32_t )luaL_checkinteger(L, 4);
+	uint32_t offset = (uint32_t )luaL_checkinteger(L, 5);
+	uint32_t limit  = (uint32_t )luaL_checkinteger(L, 6);
 	if (!lua_istable(L, 7))
 		luaL_error(L, "Bad argument #6: (table expected, got %s)",
 				lua_typename(L, lua_type(L, 7)));
@@ -261,8 +261,8 @@ int ltnt_requestbuilder_delete(struct lua_State *L) {
 		luaL_error(L, "bad number of arguments (4 expected, got %d)",
 				lua_gettop(L) - 1);
 	struct tp **iproto = ltnt_checkrequestbuilder(L, 1);
-	uint32_t reqid = (uint32_t )luaL_checkint(L, 2);
-	uint32_t space = (uint32_t )luaL_checkint(L, 3);
+	uint32_t reqid = (uint32_t )luaL_checkinteger(L, 2);
+	uint32_t space = (uint32_t )luaL_checkinteger(L, 3);
 	uint32_t flags = (uint32_t )luaL_checknumber(L, 4);
 	if (!lua_istable(L, 5))
 		luaL_error(L, "Bad argument #4: (table expected, got %s)",
@@ -295,7 +295,7 @@ int ltnt_requestbuilder_call(struct lua_State *L) {
 		luaL_error(L, "bad number of arguments (3 expected, got %d)",
 				lua_gettop(L) - 1);
 	struct tp **iproto = ltnt_checkrequestbuilder(L, 1);
-	uint32_t reqid = (uint32_t )luaL_checkint(L, 2);
+	uint32_t reqid = (uint32_t )luaL_checkinteger(L, 2);
 	size_t name_size = 0;
 	const char *name = ltnt_checkstring(L, 3, &name_size);
 	if (!lua_istable(L, 4))
@@ -338,8 +338,8 @@ int ltnt_requestbuilder_update(struct lua_State *L) {
 		luaL_error(L, "bad number of arguments (5 expected, got %d)",
 				lua_gettop(L) - 1);
 	struct tp **iproto = ltnt_checkrequestbuilder(L, 1);
-	uint32_t reqid = (uint32_t )luaL_checkint(L, 2);
-	uint32_t space = (uint32_t )luaL_checkint(L, 3);
+	uint32_t reqid = (uint32_t )luaL_checkinteger(L, 2);
+	uint32_t space = (uint32_t )luaL_checkinteger(L, 3);
 	uint32_t flags = (uint32_t )luaL_checknumber(L, 4);
 	if (!lua_istable(L, 5))
 		luaL_error(L, "Bad argument #4: (table expected, got %s)",
@@ -364,17 +364,17 @@ int ltnt_requestbuilder_update(struct lua_State *L) {
 			luaL_error(L, "Bad table construction: (table expected, got %s)",
 					lua_typename(L, lua_type(L, -1)));
 		ltnt_getindex(L, opcur, 1);
-		uint8_t op = (uint8_t )luaL_checkint(L, -1);
+		uint8_t op = (uint8_t )luaL_checkinteger(L, -1);
 		lua_pop(L, 1);
 		ltnt_getindex(L, opcur, 2);
-		uint32_t field = (uint32_t )luaL_checkint(L, -1);
+		uint32_t field = (uint32_t )luaL_checkinteger(L, -1);
 		lua_pop(L, 1);
 		ltnt_getindex(L, opcur, 3);
 		if (op == TNT_OP_SPLICE) {
-			uint32_t offset = (uint32_t )luaL_checkint(L, -1);
+			uint32_t offset = (uint32_t )luaL_checkinteger(L, -1);
 			lua_pop(L, 1);
 			ltnt_getindex(L, opcur, 4);
-			uint32_t cut = (uint32_t )luaL_checkint(L, -1);
+			uint32_t cut = (uint32_t )luaL_checkinteger(L, -1);
 			lua_pop(L, 1);
 			ltnt_getindex(L, opcur, 5);
 			size_t len = 0;
@@ -392,7 +392,7 @@ int ltnt_requestbuilder_update(struct lua_State *L) {
 			if (lua_isstring(L, -1)) {
 				data = ltnt_checkstring(L, -1, &len);
 			} else if (lua_isnumber(L, -1)) {
-				data = (char *)(intptr_t )luaL_checkint(L, -1);
+				data = (char *)(intptr_t )luaL_checkinteger(L, -1);
 				len = 4;
 			} else {
 				luaL_error(L, "Bad op argument: (string or number expected, got %s)",
