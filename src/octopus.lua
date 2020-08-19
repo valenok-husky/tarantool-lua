@@ -403,13 +403,13 @@ Connection.__gc    = Connection.close
 -- @return  Connection object of octopus
 function Connection.connect(t)
     local function create_connection(host, port, timeout)
-        local socket = __s.tcp_connect(host, port, timeout)
-        local err = socket:error()
+        local sock, err = __s.connect(host, port)
+        sock:settimeout(timeout)
         if err ~= nil then
             Connection.error("socket: "..err, 5)
         end
         -- socket:setoption('tcp-nodelay', true)
-        return socket
+        return sock
     end
     local default = {
         host    = "127.0.0.1",
