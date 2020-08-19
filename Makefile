@@ -19,12 +19,7 @@ all: $(OBJS)
 	cp -f src/tnt_schema.lua test/
 	cp -f src/tnt_helpers.lua test/
 
-libs: yaml luasocket telescope pack
-
-luasocket:
-	make -C 3rdparty/luasocket all LUAV=$(LUAV)
-	cp -f 3rdparty/luasocket/socket.lua test/socket.lua
-	cp -f 3rdparty/luasocket/socket.so.3.0-rc1 test/socket.so
+libs: yaml telescope pack
 
 yaml:
 	make -C 3rdparty/yaml all LUAV=$(LUAV)
@@ -38,7 +33,6 @@ pack:
 	cp -f 3rdparty/pack/tnt_pack.so test/tnt_pack.so
 
 clean-all:
-	make -C 3rdparty/luasocket clean
 	make -C 3rdparty/yaml clean
 	make -C 3rdparty/pack clean
 	make clean
@@ -54,4 +48,4 @@ docs:
 test:
 	 LUAV=$(LUAV) make -C test test
 
-.PHONY: all libs luasocket yaml telescope pack clean-all clean docs test test_new
+.PHONY: all libs yaml telescope pack clean-all clean docs test test_new
