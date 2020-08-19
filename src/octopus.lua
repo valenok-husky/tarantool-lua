@@ -102,14 +102,14 @@ local Connection = {
     end,
 
     _recv_message = function (self)
-        local a, err = self._sock:receive('12')
+        local a, err = self._sock:receive(12)
         if a == nil then
             self._rb:flush()
             self.error("socket: "..err, 5)
         end
         local b, err, get = "", nil, self._body_len(a)
         if get ~= 0 then
-            b, err = self._sock:receive(tostring(get))
+            b, err = self._sock:receive(get)
         end
         if b == nil then
             self._rb:flush()
