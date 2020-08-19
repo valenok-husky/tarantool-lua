@@ -1,9 +1,9 @@
 --------------------------------
 -- Tarantool-Connector for LUA
 
-local tarantool = {
-    _VERSION     = "tarantool-lua 0.0.2-dev",
-    _DESCRIPTION = "Lua library for the tarantool k-v storage system",
+local octopus = {
+    _VERSION     = "octopus-lua 0.0.2-dev",
+    _DESCRIPTION = "Lua library for the octopus k-v storage system",
 }
 
 local tnt    = require("tnt")
@@ -159,7 +159,7 @@ local Connection = {
     end,
 
     --- Insert function.
-    -- If there's a tuple in the tarantool with same key - error'll be thrown.
+    -- If there's a tuple in the octopus with same key - error'll be thrown.
     --
     -- @function insert
     -- @tparam space  number (integer)
@@ -175,7 +175,7 @@ local Connection = {
     end,
 
     --- Replace function.
-    -- If there's no tuple in the tarantool with same key - error'll be thrown.
+    -- If there's no tuple in the octopus with same key - error'll be thrown.
     --
     -- @function replace
     -- @tparam space  number (integer)
@@ -207,7 +207,7 @@ local Connection = {
     end,
 
     --- Delete function.
-    -- Delete tuple in tarantool with this primary key
+    -- Delete tuple in octopus with this primary key
     --
     -- @function delete
     -- @tparam  space number (integer)
@@ -297,7 +297,7 @@ local Connection = {
     end,
 
     --- Ping funnction.
-    -- Ping Tarantool server
+    -- Ping octopus server
     --
     -- @function ping
     --
@@ -394,16 +394,16 @@ Connection.__index = Connection
 Connection.__gc    = Connection.close
 
 --- Connect function
--- Connect to tarantool instance and create connection object.
+-- Connect to octopus instance and create connection object.
 -- @tparam  host    string
--- @param   host    string with tarantool address
+-- @param   host    string with octopus address
 -- @tparam  port    number
--- @param   port    tarantool primary port (or secondary)
+-- @param   port    octopus primary port (or secondary)
 -- @tparam  timeout number
 -- @param   timeout connection timeout (in seconds)
 -- @tparam  schema  table
--- @param   schema  schema for tarantool connection
--- @return  Connection object of tarantool
+-- @param   schema  schema for octopus connection
+-- @return  Connection object of octopus
 function Connection.connect(t)
     local function create_connection(host, port, timeout)
         local socket = tcp()

@@ -15,7 +15,7 @@ OBJS = src/tnt.o
 all: $(OBJS)
 	$(CC) -o $(OUTPUT) $(LDFLAGS) ${OBJS}
 	cp -f tnt.so test/
-	cp -f src/tarantool.lua test/
+	cp -f src/octopus.lua test/
 	cp -f src/tnt_schema.lua test/
 	cp -f src/tnt_helpers.lua test/
 

@@ -1,4 +1,4 @@
-package = "tarantool"
+package = "octopus"
 version = "latest-1"
 
 source = {
@@ -33,7 +33,7 @@ build = {
                 "./"
             }
         },
-        ["tarantool"] = 'src/tarantool.lua',
+        ["octopus"] = 'src/octopus.lua',
         ["tnt_schema"] = 'src/tnt_schema.lua',
         ["tnt_helpers"] = 'src/tnt_helpers.lua',
         ["tnt_pack"] = {

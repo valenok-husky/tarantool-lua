@@ -61,7 +61,7 @@ local Schema = {
                 val = tuple[i]
             else
                 self.error(string.format('Schema error: can\'t send value'..
-                                         ' of type %s to tarantool',
+                                         ' of type %s to octopus',
                                          type(tuple[i])))
             end
             table.insert(new_tuple, val)
