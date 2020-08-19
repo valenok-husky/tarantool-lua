@@ -19,9 +19,6 @@ local tbl_level          = __h.tbl_level
 local repack_tuple       = __h.repack_tuple
 local tbl_of_strnum_keys = __h.tbl_of_strnum_keys
 
-local gettime            = __s.gettime
-local tcp                = __s.tcp
-
 function table.pack(...)
     return {n = select("#", ...), ...}
 end
@@ -309,9 +306,9 @@ local Connection = {
         local stat, err = self._rb:ping(self:_reqid())
         if not stat then self.error(string.format("Ping error: %s", err), 4) end
 
-        time = gettime()
+        local time = os.clock()
         local stat, pack = self:_send_recv()
-        return stat, gettime() - time
+        return stat, os.clock() - time
     end,
 
     --- Select function.
@@ -406,13 +403,12 @@ Connection.__gc    = Connection.close
 -- @return  Connection object of octopus
 function Connection.connect(t)
     local function create_connection(host, port, timeout)
-        local socket = tcp()
-        socket:settimeout(timeout)
-        local stat, err = socket:connect(host, port)
-        if stat == nil then
+        local socket = __s.tcp_connect(host, port, timeout)
+        local err = socket:error()
+        if err ~= nil then
             Connection.error("socket: "..err, 5)
         end
-        socket:setoption('tcp-nodelay', true)
+        -- socket:setoption('tcp-nodelay', true)
         return socket
     end
     local default = {
